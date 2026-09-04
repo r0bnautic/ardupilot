@@ -2554,7 +2554,6 @@ void AP_OSD_Screen::draw_script(void)
         }
         backend->write(osd->_lua_items[i].x, osd->_lua_items[i].y,false,"%s", osd->_lua_items[i].text);
     }
-    //osd->_lua_items = nullptr; -- can't change this here bad
 }
 
 
