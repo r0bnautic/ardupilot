@@ -2542,6 +2542,10 @@ void AP_OSD_Screen::draw_script(void)
     if (osd ==nullptr) {
         return;
     }
+    if (osd->_lua_items == nullptr)
+    {
+        return;
+    }
     WITH_SEMAPHORE(osd->_lua_sem);
 
     for (uint8_t i = 0; i < osd->_lua_item_count; i++) {
@@ -2550,6 +2554,7 @@ void AP_OSD_Screen::draw_script(void)
         }
         backend->write(osd->_lua_items[i].x, osd->_lua_items[i].y,false,"%s", osd->_lua_items[i].text);
     }
+    //osd->_lua_items = nullptr; -- can't change this here bad
 }
 
 
@@ -2574,8 +2579,8 @@ void AP_OSD_Screen::draw(void)
 
     DRAW_SETTING(message);
     //DRAW_SETTING(horizon);
-    draw_horizon(26, 4);
-    draw_horizon(26, 14);
+    draw_horizon(26, 7);
+    draw_horizon(26, 13);
     DRAW_SETTING(compass);
     DRAW_SETTING(altitude);
 
